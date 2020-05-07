@@ -2,24 +2,15 @@ clustalo-python
 ===============
 
 This is just a simple Python wrapper around Clustal Omega
-(http://www.clustal.org/omega/), used internally at Benchling but casually open
-source, if it helps anybody. Also available via::
+(http://www.clustal.org/omega/), used internally at Benchling, then modified
+for easier building by Cyrus Biotechnology.
 
-  pip install clustalo
+Support for OSX requires the libomp library from brew. You may install it via:
 
-Requires `libclustalo` installed, version 1.2.0. On Linux, it's recommended you
-build and install it yourself::
+```
+brew install libomp
 
-  cd clustal-omega-1.2.0
-  ./configure --with-pic --with-openmp
-  make && sudo make install
-
-before installing this package.
-
-Support for OSX is not quite there yet, mainly because OpenMP isn't supported
-on clang. Homebrew is still on 1.1.0, so you'll need to compile and install
-clustalo 1.2.0 yourself (`--without-openmp`). You'll also need to set
-`OPENMP_DISABLED=true` in env vars before running build/install.
+```
 
 Usage
 -----
@@ -38,4 +29,3 @@ Usage
 At the moment, input sequences are assumed to not be aligned (i.e. there is no
 dealign option). See ``clustalo.clustalo.__doc__`` or file ``clustaslo/clustalo.c``
 for documentation.
-
