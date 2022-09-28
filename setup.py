@@ -17,7 +17,7 @@ ARGTABLE2_FINAL_LIB_DIR = str(Path(ARGTABLE2_BASE_DIR)/"src/.libs")
 class BuildFlags:
     _args = {
         "Darwin": {"compiler": ["-Xpreprocessor", "-fopenmp"], "linker": ["-lomp"]},
-        "Default": {"compiler": ["-fopenmp"], "linker": ["-fopenmp"]},
+        "Default": {"compiler": ["-fopenmp"], "linker": ["-fopenmp", "-fPIC"]},
     }
     compiler: list
     linker: list
@@ -41,7 +41,7 @@ class CustomBuildExt(build_ext):
             [
                 "./configure",
                 f"LDFLAGS=-L{os.getcwd()}/{ARGTABLE2_FINAL_LIB_DIR}",
-                f"CFLAGS=-I{os.getcwd()}/{ARGTABLE2_INCLUDE_DIR}",
+                f"CFLAGS=-I{os.getcwd()}/{ARGTABLE2_INCLUDE_DIR} -fPIC",
             ],
             cwd=CLUSTAL_OMEGA_BASE_DIR,
         )
