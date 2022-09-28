@@ -5,10 +5,10 @@ This is just a simple Python wrapper around Clustal Omega
 (http://www.clustal.org/omega/), used internally at Benchling, then modified
 for easier building by Cyrus Biotechnology.
 
-Support for OSX requires the libomp library from brew. You may install it via:
+Support for OSX requires the libomp library, and automake from brew. You may install it via:
 
 ```
-brew install libomp
+brew install libomp automake
 
 ```
 
