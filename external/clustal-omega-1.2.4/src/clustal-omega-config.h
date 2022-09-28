@@ -17,9 +17,7 @@
 /* #undef CYGWIN */
 
 /* This is a Darwin system */
-#ifndef CLUSTAL_OMEGA_DARWIN
-#define CLUSTAL_OMEGA_DARWIN 1
-#endif
+/* #undef DARWIN */
 
 /* Define to 1 if you have the <argtable2.h> header file. */
 #ifndef CLUSTAL_OMEGA_HAVE_ARGTABLE2_H
@@ -55,7 +53,9 @@
 #endif
 
 /* Define to 1 if you have the `fseeko64' function. */
-/* #undef HAVE_FSEEKO64 */
+#ifndef CLUSTAL_OMEGA_HAVE_FSEEKO64
+#define CLUSTAL_OMEGA_HAVE_FSEEKO64 1
+#endif
 
 /* Define to 1 if you have the `ftell64' function. */
 /* #undef HAVE_FTELL64 */
@@ -66,7 +66,9 @@
 #endif
 
 /* Define to 1 if you have the `ftello64' function. */
-/* #undef HAVE_FTELLO64 */
+#ifndef CLUSTAL_OMEGA_HAVE_FTELLO64
+#define CLUSTAL_OMEGA_HAVE_FTELLO64 1
+#endif
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #ifndef CLUSTAL_OMEGA_HAVE_INTTYPES_H
@@ -120,7 +122,9 @@
 /* #undef HAVE_NTONS */
 
 /* Defined if OpenMP should and can be used */
-/* #undef HAVE_OPENMP */
+#ifndef CLUSTAL_OMEGA_HAVE_OPENMP
+#define CLUSTAL_OMEGA_HAVE_OPENMP 1
+#endif
 
 /* Define to 1 if you have the <stdarg.h> header file. */
 #ifndef CLUSTAL_OMEGA_HAVE_STDARG_H
@@ -181,7 +185,9 @@
 #endif
 
 /* This is a LINUX system */
-/* #undef LINUX */
+#ifndef CLUSTAL_OMEGA_LINUX
+#define CLUSTAL_OMEGA_LINUX 1
+#endif
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
@@ -237,27 +243,27 @@
 
 /* The size of `fpos_t', as computed by sizeof. */
 #ifndef CLUSTAL_OMEGA_SIZEOF_FPOS_T
-#define CLUSTAL_OMEGA_SIZEOF_FPOS_T 0
+#define CLUSTAL_OMEGA_SIZEOF_FPOS_T 16
 #endif
 
 /* The size of `unsigned int', as computed by sizeof. */
 #ifndef CLUSTAL_OMEGA_SIZEOF_UNSIGNED_INT
-#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_INT 0
+#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_INT 4
 #endif
 
 /* The size of `unsigned long', as computed by sizeof. */
 #ifndef CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG
-#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG 0
+#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG 8
 #endif
 
 /* The size of `unsigned long long', as computed by sizeof. */
 #ifndef CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG_LONG
-#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG_LONG 0
+#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_LONG_LONG 8
 #endif
 
 /* The size of `unsigned short', as computed by sizeof. */
 #ifndef CLUSTAL_OMEGA_SIZEOF_UNSIGNED_SHORT
-#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_SHORT 0
+#define CLUSTAL_OMEGA_SIZEOF_UNSIGNED_SHORT 2
 #endif
 
 /* This is a Solaris system */
