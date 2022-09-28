@@ -31,10 +31,12 @@ class BuildFlags:
 
 class CustomBuildExt(build_ext):
     def build_libargtable(self):
+        subprocess.check_call(["autoreconf", "-f", "-i"], cwd=ARGTABLE2_BASE_DIR)
         subprocess.check_call(["./configure"], cwd=ARGTABLE2_BASE_DIR)
         subprocess.check_call(["make"], cwd=ARGTABLE2_BASE_DIR)
 
     def build_libclustalo(self):
+        subprocess.check_call(["autoreconf", "-f", "-i"], cwd=CLUSTAL_OMEGA_BASE_DIR)
         subprocess.check_call(
             [
                 "./configure",
