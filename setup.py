@@ -14,6 +14,10 @@ ARGTABLE2_BASE_DIR = "external/argtable2-13"
 ARGTABLE2_INCLUDE_DIR = "external/argtable2-13/src"
 ARGTABLE2_FINAL_LIB_DIR = str(Path(ARGTABLE2_BASE_DIR)/"src/.libs")
 
+def get_version():
+    with open("VERSION") as versionfile:
+        return versionfile.read().strip()
+
 class BuildFlags:
     _args = {
         "Darwin": {"compiler": ["-Xpreprocessor", "-fopenmp"], "linker": ["-lomp"]},
@@ -67,8 +71,8 @@ module = Extension(
 )
 
 setup(
-    name="clustalo-py",
-    version="1.0.0",
+    name="cyrus-clustalo-py",
+    version=get_version(),
     description="Python wrapper around libclustalo",
     author="Danny Farrell",
     author_email="danpf@uw.edu",
