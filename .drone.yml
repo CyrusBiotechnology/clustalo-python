@@ -24,6 +24,7 @@ steps:
     image: python:3.10
     commands:
       - pip install .
+      - python -c "import clustalo; print(clustalo.clustalo({'A': 'AAATCGGAAA', 'B': 'CGGA'}))"
 
   - name: build and push python -- tag
     image: python:3.10
