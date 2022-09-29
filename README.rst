@@ -7,10 +7,9 @@ for easier building by Cyrus Biotechnology.
 
 Support for OSX requires the libomp library, and automake from brew. You may install it via:
 
-```
-brew install libomp automake
+::
 
-```
+    brew install libomp automake
 
 Usage
 -----
