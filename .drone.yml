@@ -1,0 +1,40 @@
+---
+
+name: default
+kind: pipeline
+type: kubernetes
+node_selector:
+  CPUs: 8
+
+steps:
+
+  - name: get version -- branch
+    image: ubuntu:latest
+    commands:
+      - echo $(cat VERSION)-$(echo $DRONE_COMMIT_BRANCH | sed 's/[/_-]//g')-$DRONE_BUILD_NUMBER > .tags
+      - echo $(cat .tags)
+    when:
+      branch:
+        exclude:
+          - master
+      event:
+        - push
+
+  - name: test
+    image: python:3.10
+    commands:
+      - pip install .
+
+  - name: build and push python -- tag
+    image: python:3.10
+    environment:
+      ARTI_USER:
+        from_secret: arti_user
+      ARTI_PASS:
+        from_secret: arti_pass
+    commands:
+      - pip install twine
+      - python setup.py bdist_wheel
+      - twine upload --repository-url https://cyrusbio.jfrog.io/cyrusbio/api/pypi/pypi -u $ARTI_USER -p $ARTI_PASS dist/*.whl
+    when:
+      event: tag
