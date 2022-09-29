@@ -22,9 +22,10 @@ steps:
 
   - name: test
     image: python:3.10
-    script: |
-      - pip install .
-      - python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
+    commands:
+      - |
+        pip install .
+        python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
 
   - name: build and push python -- tag
     image: python:3.10
