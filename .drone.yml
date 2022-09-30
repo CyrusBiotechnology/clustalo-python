@@ -25,6 +25,9 @@ steps:
     commands:
       - |
         pip install .
+        # don't run in source
+        mkdir tmpdir
+        cd tmpdir
         python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
 
   - name: build and push python -- tag
