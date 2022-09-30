@@ -24,7 +24,7 @@ steps:
     image: python:3.10
     commands:
       - |
-        pip install .
+        pip install . --index-url
         # don't run in source
         mkdir tmpdir
         cd tmpdir
@@ -39,7 +39,7 @@ steps:
         from_secret: arti_pass
     commands:
       - pip install twine
-      - python setup.py bdist_wheel
+      - pip wheel --no-binary :all:
       - twine upload --repository-url https://cyrusbio.jfrog.io/cyrusbio/api/pypi/pypi -u $ARTI_USER -p $ARTI_PASS dist/*.whl
     when:
       event: tag

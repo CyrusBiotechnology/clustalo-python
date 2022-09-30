@@ -85,6 +85,7 @@ setup(
     author_email="danpf@uw.edu",
     url="https://github.com/danpf/clustalo-python",
     ext_modules=[module],
+    zip_safe=False,
     ext_package=PACKAGE_NAME,
     cmdclass={"build_ext": CustomBuildExt},
 )
