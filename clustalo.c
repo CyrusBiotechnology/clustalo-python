@@ -1,8 +1,7 @@
 #include <Python.h>
 #include <clustal-omega.h>
 
-static PyObject *
-clustalo_clustalo(PyObject *self, PyObject *args, PyObject *keywds)
+static PyObject * _clustalo(PyObject *self, PyObject *args, PyObject *keywds)
 {
     mseq_t *prMSeq = NULL;
 
@@ -132,25 +131,9 @@ clustalo_clustalo(PyObject *self, PyObject *args, PyObject *keywds)
     return returnDict;
 }
 
-#if PY_MAJOR_VERSION >= 3
-  #define MOD_ERROR_VAL NULL
-  #define MOD_SUCCESS_VAL(val) val
-  #define MOD_INIT(name) PyMODINIT_FUNC PyInit_##name(void)
-  #define MOD_DEF(ob, name, doc, methods) \
-          static struct PyModuleDef moduledef = { \
-            PyModuleDef_HEAD_INIT, name, doc, -1, methods, }; \
-          ob = PyModule_Create(&moduledef);
-#else
-  #define MOD_ERROR_VAL
-  #define MOD_SUCCESS_VAL(val)
-  #define MOD_INIT(name) void init##name(void)
-  #define MOD_DEF(ob, name, doc, methods) \
-          ob = Py_InitModule3(name, methods, doc);
-#endif
-
 
 static PyMethodDef ClustaloMethods[] = {
-    {"clustalo",  (PyCFunction)clustalo_clustalo, METH_VARARGS | METH_KEYWORDS,
+    {"clustalo",  (PyCFunction)_clustalo, METH_VARARGS | METH_KEYWORDS,
      "Runs clustal omega."
      ""
      "Args:"
@@ -169,16 +152,35 @@ static PyMethodDef ClustaloMethods[] = {
     {NULL, NULL, 0, NULL}
 };
 
-MOD_INIT(clustalo)
+
+static struct PyModuleDef clustloModule = {
+    PyModuleDef_HEAD_INIT,
+    "_clustalo",
+    "Run Clustal Omega",
+    -1,
+    ClustaloMethods
+};
+
+
+// NOTE!! AFTER PyInit_ THIS MUST MATCH THE setup.py _clustalo NAME (THATS WHY THERE IS TWO '_')
+PyMODINIT_FUNC PyInit__clustalo(void)
 {
     PyObject *module;
-    MOD_DEF(module, "clustalo", NULL, ClustaloMethods);
-    if (module == NULL) {
-        return MOD_ERROR_VAL;
-    }
+    module = PyModule_Create(&clustloModule);
     PyModule_AddIntConstant(module, "DNA", SEQTYPE_DNA);
     PyModule_AddIntConstant(module, "RNA", SEQTYPE_RNA);
     PyModule_AddIntConstant(module, "PROTEIN", SEQTYPE_PROTEIN);
-
-    return MOD_SUCCESS_VAL(module);
+    return module;
 }
+
+
+// MOD_INIT(clustalo)
+// {
+//     PyObject *module;
+//     MOD_DEF(module, "_clustalo", NULL, ClustaloMethods);
+//     if (module == NULL) {
+//         return MOD_ERROR_VAL;
+//     }
+//
+//     return MOD_SUCCESS_VAL(module);
+// }
