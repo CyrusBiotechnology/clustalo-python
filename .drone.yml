@@ -22,9 +22,14 @@ steps:
 
   - name: test
     image: python:3.10
+    environment:
+      ARTI_USER:
+        from_secret: arti_user
+      ARTI_PASS:
+        from_secret: arti_pass
     commands:
       - |
-        pip install . --index-url
+        pip install . --index-url https://$(ARTI_USER):$(ARTI_PASS)@cyrusbio.jfrog.io/artifactory/api/pypi/pypi/simple
         # don't run in source
         mkdir tmpdir
         cd tmpdir
