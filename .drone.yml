@@ -28,10 +28,10 @@ steps:
       ARTI_PASS:
         from_secret: arti_pass
     commands:
-      - pip install . --index-url "https://$(ARTI_USER):$(ARTI_PASS)@cyrusbio.jfrog.io/artifactory/api/pypi/pypi/simple"
+      - pip install . --index-url "https://${ARTI_USER}:${ARTI_PASS}@cyrusbio.jfrog.io/artifactory/api/pypi/pypi/simple"
         # don't run in source
       - |
-        t mkdir tmpdir
+        mkdir tmpdir
         cd tmpdir
         python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
 
