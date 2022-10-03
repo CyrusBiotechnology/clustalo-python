@@ -33,7 +33,7 @@ steps:
       - |
         mkdir tmpdir
         cd tmpdir
-      - python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
+        python -c 'import clustalo; print(clustalo.clustalo({"A": "AAATCGGAAA", "B": "CGGA"}))'
 
   - name: build and push python -- tag
     image: python:3.10
