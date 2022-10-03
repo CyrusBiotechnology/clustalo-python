@@ -43,8 +43,9 @@ steps:
       ARTI_PASS:
         from_secret: arti_pass
     commands:
-      - pip install twine --index-url "https://${ARTI_USER}:${ARTI_PASS}@cyrusbio.jfrog.io/artifactory/api/pypi/pypi/simple"
-      - python setup.py sdist bdist_wheel
-      - twine upload --repository-url https://cyrusbio.jfrog.io/cyrusbio/api/pypi/pypi -u $ARTI_USER -p $ARTI_PASS dist/*.whl dist/*.tar.gz
+      - |
+        pip install twine --index-url "https://${ARTI_USER}:${ARTI_PASS}@cyrusbio.jfrog.io/artifactory/api/pypi/pypi/simple"
+        python setup.py sdist bdist_wheel
+        twine upload --repository-url https://cyrusbio.jfrog.io/cyrusbio/api/pypi/pypi -u $ARTI_USER -p $ARTI_PASS dist/*.whl dist/*.tar.gz
     when:
       event: tag
