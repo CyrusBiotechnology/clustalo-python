@@ -1,2 +1,2 @@
-include README.rst clustalo.c LICENSE
+include README.rst clustalo.c LICENSE VERSION
 recursive-include external *
