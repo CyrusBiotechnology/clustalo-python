@@ -88,4 +88,5 @@ setup(
     zip_safe=False,
     ext_package=PACKAGE_NAME,
     cmdclass={"build_ext": CustomBuildExt},
+    options={"bdist_wheel": {"universal": True}},
 )

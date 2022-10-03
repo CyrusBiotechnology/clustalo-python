@@ -39,7 +39,7 @@ steps:
         from_secret: arti_pass
     commands:
       - pip install twine
-      - pip wheel --no-binary :all:
+      - python setup.py sdist bdist_wheel
       - twine upload --repository-url https://cyrusbio.jfrog.io/cyrusbio/api/pypi/pypi -u $ARTI_USER -p $ARTI_PASS dist/*.whl
     when:
       event: tag
